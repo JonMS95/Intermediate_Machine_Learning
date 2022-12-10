@@ -3,3 +3,5 @@ PATH_TEST_CSV   = "/home/jon/Desktop/scripts/ML/Intermediate_Machine_Learning/Da
 
 SIZE_TRAIN  = 0.8
 SIZE_VAL    = 0.2
+
+SPLIT_RANDOM_STATE  = 0
