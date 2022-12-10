@@ -2,6 +2,7 @@
 from constants import *
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
 
 # Read the data. In this case, train.csv is for training, test.csv is for testing.
 # read_csv function allows us to choose the column that's going to be used as index. In this case, 'Id' column, which, by the way, is the first one, is arguably
