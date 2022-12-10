@@ -23,4 +23,4 @@ X_test = test_data[features]
 
 # Until this point, y and X variables have been recorded for the train and test cases. Note that testing is not considered to be the same as validation.
 # In fact, the next line is going to break y and X variables into training and validation (not testing) data chunks.
-X_train, X_valid, y_train, y_valid = train_test_split(X, y, train_size = 0.8, test_size = 0.2)
+X_train, X_valid, y_train, y_valid = train_test_split(X, y, train_size = SIZE_TRAIN, test_size = SIZE_VAL, random_state = SPLIT_RANDOM_STATE)
