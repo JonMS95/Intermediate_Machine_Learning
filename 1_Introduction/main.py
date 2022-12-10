@@ -3,6 +3,7 @@ from constants import *
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
 
 # Read the data. In this case, train.csv is for training, test.csv is for testing.
 # read_csv function allows us to choose the column that's going to be used as index. In this case, 'Id' column, which, by the way, is the first one, is arguably
@@ -41,3 +42,10 @@ model_4 = RandomForestRegressor(n_estimators = 200,                             
 model_5 = RandomForestRegressor(n_estimators = 100, max_depth = 7,                                                  random_state = RFR_RANDOM_STATE)
 
 models = [model_1, model_2, model_3, model_4, model_5]
+
+# Below, a function that gets a model and determines its mean absolute error is defined.
+# Trivia fact: python allows the developer to set some defafult variables, by using var = default_value kind of statement when declaring the input parameters.
+def score_model(model, X_t = X_train, X_v = X_valid, y_t = y_train, y_v = y_valid):
+    model.fit(X_t, y_t)
+    prediction = model.predict(X_v, y_v)
+    return mean_absolute_error(y_v, prediction)
