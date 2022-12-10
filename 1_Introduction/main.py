@@ -59,3 +59,12 @@ def score_model(model, X_t = X_train, X_v = X_valid, y_t = y_train, y_v = y_vali
 for i in models.keys():
     MAE = score_model(i)
     print("Model: %d\t MAE %d" % (list(models.keys()).index(i) + 1, MAE))
+
+# As seen, the third model seems to be the mos effective one. Thus, it is going to be stored in a variable. Note that the method that generates the random forest
+# is called again, because the current third model is already fitted, and it's consequently biased.
+best_model = RandomForestRegressor(n_estimators = 100, criterion ='absolute_error', random_state = RFR_RANDOM_STATE)
+
+# Same as in the previous exercises (done in the begginer tutorial series), the whole data set (not only the train side) is used to fit the model again.
+best_model.fit(X, y)
+
+# Now, the model should be tested against the test data set (not the validation data set).
