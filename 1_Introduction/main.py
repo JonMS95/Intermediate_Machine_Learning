@@ -28,4 +28,16 @@ X_test = test_data[features]
 # In fact, the next line is going to break y and X variables into training and validation (not testing) data chunks.
 X_train, X_valid, y_train, y_valid = train_test_split(X, y, train_size = SIZE_TRAIN, test_size = SIZE_VAL, random_state = SPLIT_RANDOM_STATE)
 
-print(X_train[0:5])
+# Some models are going to be defined now, all of them based in the RFR structure.
+# Some notes about the passed arguments:
+#   ·n_estimators is the number of decision trees that each forest is going to use.
+#   ·criterion is the way the quality of each split in each tree is measured. In this case, minimizing the MAE is wanted, getting the median of each terminal node.
+#   ·max_depth indicates which the maximum depth of each tree should be.
+
+model_1 = RandomForestRegressor(n_estimators = 50,                                                                  random_state = RFR_RANDOM_STATE)
+model_2 = RandomForestRegressor(n_estimators = 100,                                                                 random_state = RFR_RANDOM_STATE)
+model_3 = RandomForestRegressor(n_estimators = 100, criterion ='absolute_error',                                    random_state = RFR_RANDOM_STATE)
+model_4 = RandomForestRegressor(n_estimators = 200,                                 min_samples_split = 20,         random_state = RFR_RANDOM_STATE)
+model_5 = RandomForestRegressor(n_estimators = 100, max_depth = 7,                                                  random_state = RFR_RANDOM_STATE)
+
+models = [model_1, model_2, model_3, model_4, model_5]
