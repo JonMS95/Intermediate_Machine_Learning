@@ -15,7 +15,7 @@ test_data  = pd.read_csv(PATH_TEST_CSV, index_col = 'Id')
 y = train_data['SalePrice']
 # y_test = test_data['SalePrice']
 #If we print the test data columns, we will find no sale price series.
-print(test_data.columns)
+# print(test_data.columns)
 
 # Trivia fact: 'y' variable could have been declared as y = train_data.SalePrice as well. However, declaring it as it's done above is strongly recommended, because
 # it covers a more general case. If the variable name has special characters within it, then the dot ('.') method, it's to say, accessing the variable as a member
@@ -41,11 +41,21 @@ model_3 = RandomForestRegressor(n_estimators = 100, criterion ='absolute_error',
 model_4 = RandomForestRegressor(n_estimators = 200,                                 min_samples_split = 20,         random_state = RFR_RANDOM_STATE)
 model_5 = RandomForestRegressor(n_estimators = 100, max_depth = 7,                                                  random_state = RFR_RANDOM_STATE)
 
-models = [model_1, model_2, model_3, model_4, model_5]
+models = {
+    model_1 : -1,
+    model_2 : -1,
+    model_3 : -1,
+    model_4 : -1,
+    model_5 : -1
+    }
 
 # Below, a function that gets a model and determines its mean absolute error is defined.
 # Trivia fact: python allows the developer to set some defafult variables, by using var = default_value kind of statement when declaring the input parameters.
 def score_model(model, X_t = X_train, X_v = X_valid, y_t = y_train, y_v = y_valid):
     model.fit(X_t, y_t)
-    prediction = model.predict(X_v, y_v)
+    prediction = model.predict(X_v,)
     return mean_absolute_error(y_v, prediction)
+
+for i in models.keys():
+    MAE = score_model(i)
+    print("Model: %d\t MAE %d" % (list(models.keys()).index(i) + 1, MAE))
