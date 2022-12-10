@@ -68,3 +68,8 @@ best_model = RandomForestRegressor(n_estimators = 100, criterion ='absolute_erro
 best_model.fit(X, y)
 
 # Now, the model should be tested against the test data set (not the validation data set).
+predictions_test_data = best_model.predict(X_test)
+
+# Store the prediction in a Dataframe class object. Then, it's going to be stored in an output CSV file.
+predictions_test_data_DF = pd.DataFrame({'Id': X_test.index, 'SalePrice': predictions_test_data})
+predictions_test_data_DF.to_csv(PATH_SUBMISSION, index = False)
