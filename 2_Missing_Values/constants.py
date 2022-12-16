@@ -1,0 +1,1 @@
+PATH_MELBOURNE_CSV  = "/home/jon/Desktop/scripts/ML/Intermediate_Machine_Learning/Data_sets/melb_data.csv"
