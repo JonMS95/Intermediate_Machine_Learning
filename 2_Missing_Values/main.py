@@ -7,3 +7,17 @@
 # be something like a mean value of the other values found in the same dataset column.
 # 3-Imputation with extra data: sometimes, which values were originally missing has to be taken into account. To do so, another column may be added next to the
 # one that has missing values within it, telling if that row within that column included data originally or not.
+
+from constants import *
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
+
+melb_data = pd.read_csv(PATH_MELBOURNE_CSV)
+
+# Target is going to be the price, as usually.
+y = melb_data.Price
+
+melb_pred = melb_data.drop(['Price'], axis = 1)
+print(melb_pred)
